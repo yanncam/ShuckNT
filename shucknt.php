@@ -149,7 +149,7 @@ function printHeader($wordlistFile, $noHeader){
 		echo "From these data, several ways to break tokens are tried :<br />";
 		echo "<ul>";
 		echo "<li>Smart-research of the NT-Hash (Pass-the-Hash ready) into the HIBP NTLM wordlist is done in very efficient way (result instantly).</li>";
-		echo "<li>Crack.sh token ready-to-use dowgraded (to pay less) on the https://crack.sh website to gain the NT-Hash corresponding (from 0$ to 300$ depending on the challenge and ESS/SSP).</li>";
+		echo "<li>Crack.sh token ready-to-use dowgraded (to pay less) on the https://crack.sh website to gain the NT-Hash corresponding (from $0 to $200 depending on the challenge and ESS/SSP).</li>";
 		echo "<li>Hashcat DES-KPA (mode 14000) ready-to-crack format to convert to NT-Hash corresponding (Pass-the-Hash ready) (several days of cryptanalysis).</li>";
 		echo "<li>Hashcat NetNTLMv1 (mode 5500 or 27000) ready-to-crack format to gain plaintext or NT-hash.</li>";
 		echo "</ul>";
@@ -541,7 +541,7 @@ function getHashNTCandidates(&$reversect3toNTLMs, $wordlistFile){
 }
 
 function computeCrackShToken(&$data){
-	return ((!$data["ess"] && $data["clientchallenge"] === "1122334455667788") ? 'NTHASH:'.$data["ntresp"]." (0$)" : '$NETLM$'.$data["challenge"].'$'.$data["ntresp"]." (20-300$)");
+	return ((!$data["ess"] && $data["clientchallenge"] === "1122334455667788") ? 'NTHASH:'.$data["ntresp"]." ($0)" : '$NETLM$'.$data["challenge"].'$'.$data["ntresp"]." ($20-$200)");
 }
 
 function computeHashcat14000(&$data){
