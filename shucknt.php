@@ -11,11 +11,11 @@ DES-based authentication token shucker (https://shuck.sh)
 ShuckNT is design to dowgrade, convert, dissect and shuck authentication token based on Data Encryption Standard (DES).
 Algorithms / formats supported :
         - NetNTLMv1(-ESS/SSP)
-		- MSCHAPv2
+	- MSCHAPv2
         - NET(NT)LM
         - (LM|NT)HASH
         - PPTP-VPN $99$
-		- All with any challenge value!
+	- All with any challenge value!
 
 ShuckNT rely on "hash shucking" principle to optimize challenge-response cracking and exploitability.
 
@@ -39,7 +39,7 @@ Do not modify anything afterwards
 ####################################################################################################### */
 define("SHUCKNT_VERSION", "1.0");
 
-$shortopts	= "h";		// -h (help)
+$shortopts  = "h";	// -h (help)
 $shortopts .= "f:";     // -f inputs.txt
 $shortopts .= "i:";     // -i "$99$1a7F1qr2HihoXfs/56u5XMdpDZ83N6hW/HI="
 $shortopts .= "w:";     // -w wordlist-nthash-reversed-ordered-by-hash.bin
@@ -52,7 +52,7 @@ $shortopts .= "j";      // -j (no display header for json output)
 
 $options = getopt($shortopts);
 
-$help			= (is_array($options) && array_key_exists("h", $options));
+$help		= (is_array($options) && array_key_exists("h", $options));
 $inputHash      = (is_array($options) && array_key_exists("i", $options) && !empty($options["i"])) ? trim($options["i"]) : "";
 $inputFile      = (is_array($options) && array_key_exists("f", $options) && is_readable($options["f"])) ? $options["f"] : "";
 $wordlistFile   = (is_array($options) && array_key_exists("w", $options) && is_readable($options["w"])) ? $options["w"] : HIBP_REVERSED_ORDERED_WORDLIST_BIN;
@@ -60,7 +60,7 @@ $verbosity      = (is_array($options) && array_key_exists("v", $options));
 $outputFormat   = (is_array($options) && array_key_exists("o", $options) && in_array($options["o"], array("json", "web", "stdout"))) ? $options["o"] : ((php_sapi_name() === "cli") ? "stdout" : "web");
 $reverseFile   	= (is_array($options) && array_key_exists("r", $options) && is_readable($options["r"])) ? $options["r"] : "";
 $binarizeFile   = (is_array($options) && array_key_exists("b", $options) && is_readable($options["b"])) ? $options["b"] : "";
-$toFile   		= (is_array($options) && array_key_exists("t", $options) && !file_exists($options["t"])) ? $options["t"] : "";
+$toFile   	= (is_array($options) && array_key_exists("t", $options) && !file_exists($options["t"])) ? $options["t"] : "";
 $noHeader   	= (is_array($options) && array_key_exists("j", $options));
 
 printHeader($wordlistFile, $noHeader);
@@ -104,7 +104,7 @@ foreach($inputs AS $hash => &$data)
 	unset($data["candidates"]);
 unset($reversect3toNTLMs); // delete all candidates to free memory
 usort($inputs,  function($a, $b){ // sort results by NThash cracked first, then free crack.sh token, then others.
-					return [$b["nthash"], $b["crackshToken"], $b["token"]] <=> [$a["nthash"], $a["crackshToken"], $a["token"]];
+			return [$b["nthash"], $b["crackshToken"], $b["token"]] <=> [$a["nthash"], $a["crackshToken"], $a["token"]];
                 });
 displayOutput($inputs, $outputFormat, $verbosity);
 
@@ -392,19 +392,19 @@ function extractDataFromHash(&$inputs, &$reversect3toNTLMs){
 		$data['domain']                 = "";
 		$data['lmresp']                 = "";
 		$data['ntresp']                 = "";
-		$data["ct1"]              		= "";
-		$data["ct2"]              		= "";
-		$data["ct3"]              		= "";
+		$data["ct1"]              	= "";
+		$data["ct2"]              	= "";
+		$data["ct3"]              	= "";
 		$data['ess']                    = false;
-		$data["clientchallenge"]		= "";
-		$data["serverchallenge"]		= "";
-		$data["challenge"]				= "";
+		$data["clientchallenge"]	= "";
+		$data["serverchallenge"]	= "";
+		$data["challenge"]		= "";
 		$data["deskeys"]                = array("k1"=>"", "k2"=>"", "k3"=>"");
 		$data["nthash"]                 = "";
-		$data["pt1"]              		= "";
-		$data["pt2"]              		= "";
-		$data["pt3"]              		= "";
-		$data["reversePt3"]				= "";
+		$data["pt1"]              	= "";
+		$data["pt2"]              	= "";
+		$data["pt3"]              	= "";
+		$data["reversePt3"]		= "";
 		$data["candidates"]             = array();
 		$data["HIBPcountCandidates"]    = 0;
 		$data["HIBPoccurence"]          = 0;
@@ -420,12 +420,12 @@ function extractDataFromHash(&$inputs, &$reversect3toNTLMs){
 			$data['ntresp']                 = strtoupper($parts[4]);
 			$data['ess']                    = (substr($data['lmresp'], 20, 28) === "0000000000000000000000000000");
 			if($data['ess']){
-				$data['type']				.= " (ESS/SSP)";
+				$data['type']			.= " (ESS/SSP)";
 				$data["serverchallenge"]	= strtoupper(substr($data["lmresp"], 0, 16));
-				$data["challenge"]			= substr(strtoupper(md5(hex2bin($data["clientchallenge"] . substr($data["lmresp"], 0, 16)))), 0, 16);
+				$data["challenge"]		= substr(strtoupper(md5(hex2bin($data["clientchallenge"] . substr($data["lmresp"], 0, 16)))), 0, 16);
 			} else {
-				$data['type']				.= " (no ESS/SSP)";
-				$data["challenge"]			= $data["clientchallenge"];
+				$data['type']			.= " (no ESS/SSP)";
+				$data["challenge"]		= $data["clientchallenge"];
 			}
 			//$data["h4ntlmv1"]               = computeHashcatNtlmv1($data);
 			$data['description']            = $data['type'] . " type with " . $data["challenge"] . " as challenge";
@@ -456,7 +456,7 @@ function extractDataFromHash(&$inputs, &$reversect3toNTLMs){
 			$parts = explode("$", $data['token']);
 			$data["challenge"]              = $data['clientchallenge']        = strtoupper(substr(bin2hex(base64_decode($parts[2])), 0, 16));
 			$data['ntresp']                 = strtoupper(substr(bin2hex(base64_decode($parts[2])), 16, 36));
-			$data["pt3"]              		= strtoupper(substr(bin2hex(base64_decode($parts[2])), 48, 4));
+			$data["pt3"]              	= strtoupper(substr(bin2hex(base64_decode($parts[2])), 48, 4));
 			$data["description"]            = $data['type'] . " type with " . $data["challenge"] . " as challenge";
 		} else {
 			unset($inputs[$hash]);
@@ -470,7 +470,7 @@ function extractDataFromHash(&$inputs, &$reversect3toNTLMs){
 			$data["ct3"] = computeCtPartFromDesKeyChall($data["deskeys"]["k3"], $data["challenge"]);
 			$data['ntresp'] = $data["ct1"] . $data["ct2"] . $data["ct3"];
 		}
-		$data["pt3"]              		= ($data["pt3"] === "") ? bruteForcePT3FromCT3($data['ct3'], $data["challenge"]) : $data["pt3"]; // no BF for $99$
+		$data["pt3"]              	= ($data["pt3"] === "") ? bruteForcePT3FromCT3($data['ct3'], $data["challenge"]) : $data["pt3"]; // no BF for $99$
 		$data["deskeys"]["k3"]          = ntlm2des($data["pt3"]);
 		$reversect3toNTLMs[]            = $data["reversePt3"]       = strrev($data["pt3"]);
 		$data["crackshToken"]           = computeCrackShToken($data);
@@ -526,10 +526,10 @@ function getHashNTCandidates(&$reversect3toNTLMs, $wordlistFile){
 					$hashExtract = strval(strtoupper(bin2hex($extract)));
 					$hashPrefixExtract = substr($hashExtract, 0, 4);
 					if(strcmp(strval($hashPrefixExtract), strval($reversect3toNTLM)) === 0){
-						$output[] = array(      "occurence" => intval($occurenceHash),
-												"des01" => ntlm2des(substr(strtoupper(strrev($hashExtract)), 0, 14)),
-												"des02" => ntlm2des(substr(strtoupper(strrev($hashExtract)), 14, 14)),
-										);
+						$output[] = array(	"occurence" => intval($occurenceHash),
+									"des01" => ntlm2des(substr(strtoupper(strrev($hashExtract)), 0, 14)),
+									"des02" => ntlm2des(substr(strtoupper(strrev($hashExtract)), 14, 14)),
+								);
 						$start += $byteLength;
 					} else break;
 				}
