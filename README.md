@@ -4,7 +4,7 @@
 
 # :closed_lock_with_key: ShuckNT : Shuck hash before trying to crack it | [Shuck.sh](https://shuck.sh)'s script
 
-**ShuckNT** is the script of [Shuck.sh](https://shuck.sh) online service for on-premise use. It is design to dowgrade, convert, dissect and shuck authentication token based on [Data Encryption Standard (DES)](https://en.wikipedia.org/wiki/Data_Encryption_Standard).
+**ShuckNT** is the script of [Shuck.sh](https://shuck.sh) online service for on-premise use ([try it online!](https://shuck.sh/get-shucking.php)). It is design to dowgrade, convert, dissect and shuck authentication token based on [Data Encryption Standard (DES)](https://en.wikipedia.org/wiki/Data_Encryption_Standard).
 
 Algorithms / formats supported :
 - MSCHAPv2
