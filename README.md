@@ -191,7 +191,7 @@ $ php shucknt.php -i 'ycam::ad:DEADC0DEDEADC0DE00000000000000000000000000000000:
 
 Shuck instantly many authentication tokens from supported formats for their corresponding NT-hashes, from an input file (with specified HIBP-DB) and simple output:
 ```
-$ php shucknt.php -f tokens.txt -w pwned-passwords-ntlm-reversed-ordered-by-hash-v8.bin
+$ php shucknt.php -f tokens-samples.txt -w pwned-passwords-ntlm-reversed-ordered-by-hash-v8.bin
 [...]
 10 hashes-challenges analyzed in 3 seconds, with 8 NT-Hash instantly broken for pass-the-hash and 1 that can be broken via crack.sh for free.
 
@@ -228,7 +228,7 @@ $ php shucknt.php -f tokens.txt -w pwned-passwords-ntlm-reversed-ordered-by-hash
 
 Shuck tokens with JSON output only:
 ```
-$ php shucknt.php -f tokens.txt -o json -j
+$ php shucknt.php -f tokens-samples.txt -o json -j
 [...]
     {
         "type": "NetNTLMv1 (ESS\/SSP)",
