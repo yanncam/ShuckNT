@@ -66,7 +66,7 @@ $noHeader   	= (is_array($options) && array_key_exists("j", $options));
 printHeader($wordlistFile, $noHeader);
 
 if($help)
-	printHelp(); 							// auto exit
+	printHelp(); 				// auto exit
 if($reverseFile !== "")
 	reverseHIBPDB($reverseFile, $toFile); 	// auto exit
 if($binarizeFile !== "")
