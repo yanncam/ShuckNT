@@ -41,7 +41,7 @@ define("SHUCKNT_VERSION", "1.0");
 
 $shortopts  = "h";	// -h (help)
 $shortopts .= "f:";     // -f inputs.txt
-$shortopts .= "i:";     // -i "$99$1a7F1qr2HihoXfs/56u5XMdpDZ83N6hW/HI="
+$shortopts .= "i:";     // -i '$99$1a7F1qr2HihoXfs/56u5XMdpDZ83N6hW/HI='
 $shortopts .= "w:";     // -w wordlist-nthash-reversed-ordered-by-hash.bin
 $shortopts .= "o:";     // -o json
 $shortopts .= "v";      // -v (verbose output with all details)
