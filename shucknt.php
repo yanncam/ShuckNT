@@ -624,6 +624,9 @@ function binarizeHIBPDB($inputFile, $outputFile){
 	echo "\n[*] Starting the database binarization...\n";
 	$start = time();
 	if($handle1){
+		// Fix issue #1 by adding a very first hardcoded hash with 0 occurence
+                fwrite($handle2, hex2bin("00000000000000000000000000000000"));
+                fwrite($handle2, pack("N", 0));
 		while(!feof($handle1)){
 			$line = explode(":",trim(fgets($handle1)));
 			if(count($line) === 2){
