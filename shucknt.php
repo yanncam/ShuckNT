@@ -387,7 +387,7 @@ function extractDataFromHash(&$inputs, &$reversect3toNTLMs){
 	foreach($inputs AS $hash => &$data){
 		$data['type']                   = "";
 		$data['description']            = "";
-		$data['token']                  = trim($hash);
+		$data['token']                  = str_replace(array("'", '"'), "", trim($hash));
 		$data['user']                   = "";
 		$data['domain']                 = "";
 		$data['lmresp']                 = "";
@@ -415,7 +415,7 @@ function extractDataFromHash(&$inputs, &$reversect3toNTLMs){
 			$parts = explode(":", $data['token']);
 			$data['user']                   = htmlentities($parts[0]);
 			$data['domain']                 = htmlentities($parts[2]);
-			$data['clientchallenge']        = strtoupper($parts[5]);
+			$data['clientchallenge']        = strtoupper(substr($parts[5], 0, 16));
 			$data['lmresp']                 = strtoupper($parts[3]);
 			$data['ntresp']                 = strtoupper($parts[4]);
 			$data['ess']                    = (substr($data['lmresp'], 20, 28) === "0000000000000000000000000000");
