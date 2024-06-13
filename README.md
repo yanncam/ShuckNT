@@ -42,7 +42,7 @@ The installation process consists of:
 
 - Get the **ShuckNT** project;
 - Prepare HaveIBeenPwned database (one time only, takes several minutes)
-  - **Download** the latest version of the [HaveIBeenPwned database of NT-hashes ordered by hashes](https://haveibeenpwned.com/Passwords) (several GB);
+  - **Download** the latest version of the [HaveIBeenPwned database of NT-hashes ordered by hashes](https://haveibeenpwned.com/Passwords) (several GB) ([Mirror link](https://data.verifiedjoseph.com/dataset/pwned-passwords-version-8));
   - **Extract** this database via 7zip;
   - **Reverse** all the hashes of this database via ShuckNT script directly;
   - **Sort** all reversed-hashes;
