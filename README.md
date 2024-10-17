@@ -41,7 +41,7 @@ The initial idea of [Shuck.sh](https://shuck.sh)/ShuckNT was born from a desire 
 The installation process consists of:
 
 - Get the **ShuckNT** project;
-- Prepare HaveIBeenPwned database (one time only, takes several minutes)
+- Prepare HaveIBeenPwned database (one time only, takes several minutes) (these steps are to be carried out under a Unix/Linux environment):
   - **Download** the latest version of the [HaveIBeenPwned database of NT-hashes ordered by hashes](https://haveibeenpwned.com/Passwords) (several GB) ([Mirror link](https://data.verifiedjoseph.com/dataset/pwned-passwords-version-8));
   - **Extract** this database via 7zip;
   - **Reverse** all the hashes of this database via ShuckNT script directly;
@@ -79,7 +79,7 @@ rm -f pwned-passwords-ntlm-ordered-by-hash-v8.txt-reversed-sorted
 php shucknt.php -h
 ```
 
-_Works on Windows/Linux with PHP7/8+._
+_The generation of the database in the format expected by ShuckNT is to be done under a Unix/Linux system. The use of ShuckNT with a valid database has been tested under Windows/Linux with PHP7/8+._
 
 ## :fire: Demonstration / Example / How to use?
 
