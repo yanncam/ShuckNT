@@ -42,7 +42,7 @@ The installation process consists of:
 
 - Get the **ShuckNT** project;
 - Prepare HaveIBeenPwned database (one time only, takes several minutes) (these steps are to be carried out under a Unix/Linux environment):
-  - **Download** the latest version of the [HaveIBeenPwned database of NT-hashes ordered by hashes](https://haveibeenpwned.com/Passwords) (several GB) ([Mirror link](https://data.verifiedjoseph.com/dataset/pwned-passwords-version-8));
+  - **Download** the latest version of the [HaveIBeenPwned database of NT-hashes ordered by hashes](https://haveibeenpwned.com/Passwords) (several GB) ([Mirror link](https://data.verifiedjoseph.com/dataset/pwned-passwords-version-8) or via torrent);
   - **Extract** this database via 7zip;
   - **Reverse** all the hashes of this database via ShuckNT script directly;
   - **Sort** all reversed-hashes;
@@ -79,7 +79,29 @@ rm -f pwned-passwords-ntlm-ordered-by-hash-v8.txt-reversed-sorted
 php shucknt.php -h
 ```
 
-_The generation of the database in the format expected by ShuckNT is to be done under a Unix/Linux system. The use of ShuckNT with a valid database has been tested under Windows/Linux with PHP7/8+._
+_The generation of the database in the format expected by ShuckNT is to be done under a Unix/Linux system._
+
+_The use of ShuckNT with a valid database has been tested under Windows/Linux with PHP7/8+._
+
+_Please note that ShuckNT use the PHP-OpenSSL extension with the DES-ECB algorithm. So for modern PHP version with OpenSSL3, [enable the legacy provider](https://www.practicalnetworking.net/practical-tls/openssl-3-and-legacy-providers/)._
+
+Checksums for each steps :
+
+```
+$ sha1sum pwned-passwords-ntlm-*
+225a993a908e3d73ffa68859c4f128e17359358e  pwned-passwords-ntlm-ordered-by-hash-v8.7z
+4b6c4728c21f64d6a58c7b63d98dcf342c068407  pwned-passwords-ntlm-ordered-by-hash-v8.txt
+88094c4a332ecfac9a15c23ba886194d1810b0b2  pwned-passwords-ntlm-ordered-by-hash-v8.txt-reversed
+d5486dfbf960f36ff0e1cf313a1b80db5cd4137f  pwned-passwords-ntlm-ordered-by-hash-v8.txt-reversed-sorted
+31a5c1b605cca5bcf71196c70f291c05aa3fe86c  pwned-passwords-ntlm-reversed-ordered-by-hash-v8.bin
+
+$ sha256sum pwned-passwords-ntlm-*
+ea83d536387e6b149f2e362bf7dfbf521523812611359f47620fd44dae9770ee  pwned-passwords-ntlm-ordered-by-hash-v8.7z
+916cfd1772d24f2fe99aa5f37d4a465359c7b6f7d39f45ffbf27deca697b7116  pwned-passwords-ntlm-ordered-by-hash-v8.txt
+76f9e101801dfc44489cad4edec5f14d634c2b4676bb9ffbc7e9968c9a5356a5  pwned-passwords-ntlm-ordered-by-hash-v8.txt-reversed
+6ee13a35ed88e8073be088a20560cb9fefcc6d08e599241244eaee01dc053a44  pwned-passwords-ntlm-ordered-by-hash-v8.txt-reversed-sorted
+ac2f6bf681fbe636b94f3ce3f2b594ef3d0af7671375478db1153874e8a5d873  pwned-passwords-ntlm-reversed-ordered-by-hash-v8.bin
+```
 
 ## :fire: Demonstration / Example / How to use?
 
